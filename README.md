@@ -26,7 +26,7 @@ This repository is for the artifact evaluation of the paper "Effective Hybrid Sy
 
 ## Reproduce the Results in Paper
 ### Evaluation Metrics
-In the following, we call one algorithm (out of the baseline \breach and the proposed approach ForeSee) solving one specification (out of the ones in Table 1 in our paper) as a *problem instance*. Since the optimization algorithms used in our experiments are stochastic, we repeated each falsification trial for 30 times, and count the *success rate*, i.e., how many trials out of the 30 trials succeeded, as the indicator of the effectiveness of different techniques; for each trial, we set 900 seconds as the timeout. Therefore, the worst case for each problem instance is 900*30 seconds (7.5 hours). 
+In the following, we call one algorithm (out of the baseline breach and the proposed approach ForeSee) solving one specification (out of the ones in Table 1 in our paper) as a *problem instance*. Since the optimization algorithms used in our experiments are stochastic, we repeated each falsification trial for 30 times, and count the *success rate*, i.e., how many trials out of the 30 trials succeeded, as the indicator of the effectiveness of different techniques; for each trial, we set 900 seconds as the timeout. Therefore, the worst case for each problem instance is 900*30 seconds (7.5 hours). 
 
 In our script, we make *the number of trials* configurable. Therefore, it is not needed to run 30 trials for each problem instance; the user can input a smaller number, e.g., 10, and check if the success rate is similar to what has been presented in Table 2 of our paper.
 

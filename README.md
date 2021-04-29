@@ -41,6 +41,7 @@ Users can specify 3 settings:
   - select one from `breach|foresee`, e.g., `foresee`
 - the number of trials
   - specify a natural number, e.g., `10` 
+- (RQ2 only) rescaling factors for specific signals
 - (RQ3 only) the hyperparameters `c` and `B`<sub>P</sub>
   - select one for `c` from `0|0.02|0.2|0.5|1.0`
   - select one for `B`<sub>P</sub> from `2|5|10|15|20`

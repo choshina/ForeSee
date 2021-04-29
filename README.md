@@ -35,8 +35,8 @@ Run `python foresee.py [RQ1|RQ2|RQ3]`, then the script will ask users to specify
 Users can specify 3 settings:
 - specification ID
   - for RQ1: select one from `AT[1-22]|AFC[1-6]|FFR[1-2]`, e.g., `AT6`
-  - for RQ2: select one from ``
-  - for RQ3: select one from ``
+  - for RQ2: select one from `AT1|AT3|AT4|AT9|AT15|AFC3`
+  - for RQ3: select one from `AT17|AT19|AT21`
 - falsification algorithm
   - select one from `breach|foresee`, e.g., `foresee`
 - the number of trials

@@ -77,7 +77,7 @@ for ph in phi_str:
 	for cp in controlpoints:
 		for opt in optimization:
 			property = ph.split(';')
-			filename = model+ '_subform_' + property[0]+'_' + str(cp)  +'_' + str(scalar) + '_' + str(budget_p) + '_' + opt 
+			filename = model+ '_foresee_' + property[0]
 			param = '\n'.join(parameters)
 			with open('../benchmarks/'+filename,'w') as bm:
 				bm.write('#!/bin/sh\n')
@@ -138,11 +138,8 @@ for ph in phi_str:
 					bm.write(';filename')
 				bm.write('};\n')
 
-				bm.write('result = table(filename, spec, scalars, budget_ps, falsified, time, num_sim);\n')
-				
+				bm.write('result = table(filename, spec, falsified, time);\n')
 				bm.write('writetable(result,\'$csv\',\'Delimiter\',\';\');\n')
-                                #bm.write('save_system(mdl+\'_breach\',false);\n')
-                                bm.write('bdclose(mdl + \'_breach\');\n')
-				bm.write('quit\n')
+				bm.write('quit force\n')
 				bm.write('EOF\n')
-                                bm.write('rm *.mat\n')
+				bm.write('rm *.mat\n')

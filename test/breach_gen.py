@@ -70,7 +70,7 @@ for ph in phi_str:
 	for cp in controlpoints:
 		for opt in optimization:
 			property = ph.split(';')
-			filename = model+ '_breach_' + property[0]+'_' + str(cp)  +'_' + opt 
+			filename = model+ '_breach_' + property[0] 
 			param = '\n'.join(parameters)
 			with open('benchmarks/'+filename,'w') as bm:
 				bm.write('#!/bin/sh\n')
@@ -136,7 +136,7 @@ for ph in phi_str:
 					bm.write(';filename')
 				bm.write('};\n')
 
-				bm.write('result = table(filename, spec, falsified, time,  obj_best, num_sim);\n')
+				bm.write('result = table(filename, spec, falsified, time);\n')
 				
 				bm.write('writetable(result,\'$csv\',\'Delimiter\',\';\');\n')
 				bm.write('quit force\n')

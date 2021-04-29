@@ -9,7 +9,10 @@ def conf_gen(home, rq, time_str, specID, algo, trials, c = 0.2, bp = 10):
 	spec = ''
 	model = ''
 
-	conf_file = home + '/test/conf/' + specID + time_str
+	if not os.path.exists(home + '/test/conf/' + specID):
+		os.makedirs(home + '/test/conf/' + specID)
+	
+	conf_file = home + '/test/conf/' + specID + '/' + time_str
 	if rq == 1:
 		spec = specs[specID]
 		if specID.startswith('AT'):
@@ -42,12 +45,16 @@ def conf_gen(home, rq, time_str, specID, algo, trials, c = 0.2, bp = 10):
 				conf.write(c + '\n')
 				conf.write('budget_p 1\n')
 				conf.write(bp + '\n')
-			conf.write('\n'.join(lines))
+			for line in lines:
+				conf.write(line)
+	
+	if not os.path.exists(home + '/test/benchmarks'):
+		os.makedirs(home + '/test/benchmarks')
 
 	if algo == 'foresee':
-		os.system('python3 foresee_gen.py ' + conf_file)
+		os.system('python3 test/foresee_gen.py ' + conf_file)
 	elif algo == 'breach':
-		os.system('python3 breach_gen.py ' + conf_file)
+		os.system('python3 test/breach_gen.py ' + conf_file)
 	os.system('chmod 777 ' + home + '/test/benchmarks/*')
 
 	os.system('make')
@@ -77,6 +84,7 @@ def conf_gen(home, rq, time_str, specID, algo, trials, c = 0.2, bp = 10):
 	print('-------------------------------\n')	
 	print('falsification success rate: ' + str(fal) + '\n')
 	print('average time cost: ' + str(time) + '\n')
+	os.system('rm test/benchmarks/*')
 
 if __name__ == "__main__":
 	home = os.getcwd()

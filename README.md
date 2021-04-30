@@ -47,3 +47,11 @@ Users can specify 3 settings:
   - select one for `B`<sub>P</sub> from `2|5|10|15|20`
 
 Then users can wait until the results display.
+
+## Use ForeSee for Other Models
+In general, the usage of ForeSee for a new Simulink model consists of 3 steps:
+- write a configuration file `new.txt` in `test/conf/`
+- generate test script by `python test/foresee_gen.py test/conf/new.txt`
+- run test by `make`
+
+### Syntax of Configuration Files

@@ -1,6 +1,7 @@
 # ForeSee
 
 This repository is for the artifact evaluation of the paper "Effective Hybrid System Falsification Using Monte Carlo Tree Search Guided by QB-Robustness" accepted by CAV 2021.
+***
 
 ## System requirement
 
@@ -24,6 +25,7 @@ This repository is for the artifact evaluation of the paper "Effective Hybrid Sy
 - Install our tool ForeSee.
   1. in terminal navigate to ForeSee home, and run `sh InstallForeSee.sh`
 
+***
 ## Reproduce the Results in Paper
 ### Evaluation Metrics
 In the following, we call one algorithm (out of the baseline breach and the proposed approach ForeSee) solving one specification (out of the ones in Table 1 in our paper) as a *problem instance*. Since the optimization algorithms used in our experiments are stochastic, we repeated each falsification trial for 30 times, and count the *success rate*, i.e., how many trials out of the 30 trials succeeded, as the indicator of the effectiveness of different techniques; for each trial, we set 900 seconds as the timeout. Therefore, the worst case for each problem instance is 900*30 seconds (7.5 hours). 
@@ -48,6 +50,7 @@ Users can specify 3 settings:
 
 Then users can wait until the results display.
 
+***
 ## Use ForeSee for Other Models
 In general, the usage of ForeSee for a new Simulink model consists of 3 steps:
 - write a configuration file `new` in `test/conf/`

@@ -175,6 +175,7 @@ classdef Node < handle
                 fval = this.obj_best;
             else
                 fval = this.obtain_robustness(x);
+				fval
                 
 
                 this.logX(x, fval);

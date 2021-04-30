@@ -116,7 +116,7 @@ if __name__ == "__main__":
 	curr_time = time.time()
 	ts = time.strftime('%Y%m%d%H%M%S',time.localtime(curr_time))
 
-	if sys.argv[1] == 'RQ1':
+	if len(sys.argv) == 1 or sys.argv[1] == 'RQ1':
 		while True:
 			print('-------------------------------\n')
 			print('Please select a specification ID,\nfrom \'AT[1-22]\', \'AFC[1-6]\', \'FFR[1-2]\':')

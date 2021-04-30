@@ -50,8 +50,28 @@ Then users can wait until the results display.
 
 ## Use ForeSee for Other Models
 In general, the usage of ForeSee for a new Simulink model consists of 3 steps:
-- write a configuration file `new.txt` in `test/conf/`
-- generate test script by `python test/foresee_gen.py test/conf/new.txt`
+- write a configuration file `new` in `test/conf/`
+- generate test script by `python test/foresee_gen.py test/conf/new`
 - run test by `make`
 
+### Example
+We use the Simulink model "narmamaglev_v1" (See [here](https://www.mathworks.com/help/deeplearning/ug/design-narma-l2-neural-controller-in-simulink.html) for details) as an example to show how ForeSee runs new model.
+- we prepared an example configuration file `test/conf/NN_example`. Users can specify specifications, the number of trials, scalars, and etc by editting this file. Be sure to change the `addpath` item as the ForeSee home.
+- navigate to `test/`, and run `python foresee_gen.py conf/NN_example`.
+- navigate to ForeSee home, and run `make`.
+
 ### Syntax of Configuration Files
+The configuration file contains a number of items. 
+For each item, the syntax is as follows:
+ 
+ `item n`
+ 
+  `line 1`
+  
+  `line 2`
+  
+  `...`
+  
+  `line n`
+  
+The number of lines is consistent with the value of `n`.

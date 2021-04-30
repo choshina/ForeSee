@@ -20,4 +20,4 @@ results/%.csv: test/benchmarks/%
 benchmarks.jar: Manifest.txt
 	jar cfm $@ Manifest.txt -C bin .
 clean:
-	rm *.dat *.mat *.slxc *mex*
+	rm *.dat *.mat *.slxc 

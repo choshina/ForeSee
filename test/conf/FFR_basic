@@ -1,0 +1,20 @@
+model 1
+free_floating_robot
+input_name 4
+u1
+u2
+u3
+u4
+input_range 4
+-10 10
+-10 10
+-10 10
+-10 10
+optimization 1
+cmaes
+controlpoints 1
+4
+timespan 1
+0:.01:5
+timeout 1
+900

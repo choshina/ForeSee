@@ -61,9 +61,9 @@ def conf_gen(home, rq, time_str, specID, algo, trials, fac = 1, c = 0.2, bp = 10
 			conf.write(home + '\n')
 			if algo == 'foresee':
 				conf.write('scalar 1\n')
-				conf.write(c + '\n')
+				conf.write(str(c) + '\n')
 				conf.write('budget_p 1\n')
-				conf.write(bp + '\n')
+				conf.write(str(bp) + '\n')
 			for line in lines:
 				conf.write(line)
 	
@@ -98,12 +98,12 @@ def conf_gen(home, rq, time_str, specID, algo, trials, fac = 1, c = 0.2, bp = 10
 					time = (time/fal) if fal != 0 else -1
 					row = ';'.join(data[0:2]) + ';'+str(fal)+';'+str(time)
 					resout.write(row+'\n')
-					fal = 0
-					time = 0
+
 	print('-------------------------------\n')	
 	print('falsification success rate: ' + str(fal) + '/' + str(trials) + '\n')
 	print('average time cost: ' + str(time) + '\n')
 	os.system('rm test/benchmarks/*')
+	os.system('make clean')
 
 def get_list(dic):
 	l = []
@@ -172,7 +172,7 @@ if __name__ == "__main__":
 			print('\n\n')
 			print('-------------------------------\n')
 			l = factors[specID]
-			print('Please select a rescaling factor for ' + rescaled_signals[specID] + '\nfrom ' + '|'.join(l) + '\ne.g. ' + l[1]
+			print('Please select a rescaling factor for ' + rescaled_signals[specID] + '\nfrom ' + '|'.join(l) + '\ne.g. ' + l[1])
 			factor = input()
 			if factor in l:
 				break

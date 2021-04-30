@@ -10,7 +10,7 @@ if osys == 'Linux':
 	matlab = mpaths[-1] + '/matlab'
 elif osys == 'Darwin':
 	mpaths = glob.glob('/Applications/MATLAB*/bin/')
-	mapths.sort()
+	mpaths.sort()
 	matlab = mpaths[-1] + '/matlab'
 
 

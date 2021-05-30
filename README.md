@@ -19,7 +19,7 @@ This repository is for the artifact evaluation of the paper "Effective Hybrid Sy
   3. `git submodule update`
 
 - Install [Breach](https://github.com/decyphir/breach).
-  1. start matlab, set up a C/C++ compiler using the command `mex -setup`. (Refer to [here](https://www.mathworks.com/help/matlab/matlabexternal/changing-default-compiler.html) for more details.)
+  1. start matlab, set up a C/C++ compiler using the command `mex -setup`. (Refer to [here](https://www.mathworks.com/help/matlab/matlab_external/changing-default-compiler.html) for more details.)
   2. navigate to `breach/` in Matlab commandline, and run `InstallBreach`
 
 - Install our tool ForeSee.

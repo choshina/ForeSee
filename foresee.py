@@ -35,7 +35,7 @@ def conf_gen(home, rq, time_str, specID, algo, trials, fac = 1, c = 0.2, bp = 10
 			basic_file = home + '/test/conf/FFR_basic'
 	elif rq == 2:
 		spec_temp = specs_delta[specID]
-		spec = spec_temp.replace('delta', scales[fac])
+		spec = spec_temp.replace('delta', str(fac))
 		if specID.startswith('AT'):
 			model = 'Autotrans_shift_' + rescaled_signals[specID] + '_' + scales[fac]
 			basic_file = home + '/test/conf/AT_basic'

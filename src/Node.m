@@ -80,6 +80,8 @@ classdef Node < handle
             for c = this.children_list
                 if c.reward > this.reward
                     this.reward = c.reward;
+					this.x_best = c.x_best;
+					this.obj_best = c.obj_best;
                 end
                 if c.reward > 1
                     this.x_best = c.x_best; 

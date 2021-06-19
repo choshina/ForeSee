@@ -132,6 +132,8 @@ for ph in phi_str:
 				bm.write('num_sim = [];\n')
 
 				#for arch, x_best, obj_best, num_sim
+				bm.write('x_bests = [];\n')
+				bm.write('obj_bests = [];\n')
 
 		
 				bm.write('for n = 1:trials\n')
@@ -139,6 +141,10 @@ for ph in phi_str:
 				bm.write('\tfalsified = [falsified; m.falsified];\n')
 				bm.write('\tnum_sim = [num_sim;m.root.num_sim];\n')		
 				bm.write('\ttime = [time;m.time_cost];\n')
+				
+				#for arch
+				bm.write('\tx_bests = [x_bests; m.root.x_best\'];\n')
+				bm.write('\tobj_bests = [obj_bests; m.root.obj_best];\n')
 	
 				bm.write('end\n')
 
@@ -155,7 +161,7 @@ for ph in phi_str:
 					bm.write(';filename')
 				bm.write('};\n')
 
-				bm.write('result = table(filename, spec, falsified, time);\n')
+				bm.write('result = table(filename, spec, falsified, time, num_sim, obj_bests, x_bests);\n')
 				bm.write('writetable(result,\'$csv\',\'Delimiter\',\';\');\n')
 				bm.write('quit force\n')
 				bm.write('EOF\n')

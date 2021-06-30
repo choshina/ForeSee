@@ -91,7 +91,7 @@ for ph in phi_str:
 	for cp in controlpoints:
 		for opt in optimization:
 			property = ph.split(';')
-			filename = model+ '_foresee_' + property[0]
+			filename = model+ '_foresee_' + property[0] + '_' + str(cp)
 			param = '\n'.join(parameters)
 			with open('benchmarks/'+filename,'w') as bm:
 				bm.write('#!/bin/sh\n')

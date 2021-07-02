@@ -29,6 +29,8 @@ classdef Node < handle
         x_best
         obj_best
         large_rob
+        
+        
     end
     
     methods
@@ -179,9 +181,8 @@ classdef Node < handle
                 fval = this.obtain_robustness(x);
 				fval
                 
-
                 this.logX(x, fval);
-                
+                %this.new_numsim = this.new_numsim + 1;
             end
         end
         
@@ -189,6 +190,8 @@ classdef Node < handle
 
             [fmin , imin] = min(fval);
             x_min =x(:, imin);
+            
+            
             
             if fmin < this.obj_best
                 this.x_best = x_min;
@@ -202,10 +205,13 @@ classdef Node < handle
         end
         
         function rob = obtain_robustness(this, x)
+            global simm
+            simm = simm + 1;
             %set up simulation
             this.br.SetParam(this.br.GetSysVariables(), x);
             
             this.br.Sim(this.br.Sys.tspan);
+            
             rob = this.qb_robustness(this.br, this.seq.suffix());
         end
         

@@ -136,10 +136,13 @@ for ph in phi_str:
 				bm.write('obj_bests = [];\n')
 
 		
-				bm.write('for n = 1:trials\n')
+				bm.write('global simm\n')
+                                bm.write('for n = 1:trials\n')
+                                bm.write('\tsimm = 0;\n')
 				bm.write('\tm = mcts(phi, mdl, budget_t, budget_p, controlpoints, input_name, input_range, T, scalar);\n')
 				bm.write('\tfalsified = [falsified; m.falsified];\n')
-				bm.write('\tnum_sim = [num_sim;m.root.num_sim];\n')		
+				#bm.write('\tnum_sim = [num_sim;m.root.num_sim];\n')		
+                                bm.write('\tnum_sim = [num_sim;simm];\n')
 				bm.write('\ttime = [time;m.time_cost];\n')
 				
 				#for arch

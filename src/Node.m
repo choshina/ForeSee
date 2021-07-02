@@ -202,6 +202,8 @@ classdef Node < handle
         end
         
         function rob = obtain_robustness(this, x)
+	    global simm
+	    simm = simm + 1;
             %set up simulation
             this.br.SetParam(this.br.GetSysVariables(), x);
             

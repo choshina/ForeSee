@@ -130,20 +130,23 @@ for ph in phi_str:
 				bm.write('falsified = [];\n')
 				bm.write('time = [];\n')
 				bm.write('num_sim = [];\n')
+				bm.write('sim_cost = [];\n')
 
 				#for arch, x_best, obj_best, num_sim
 				bm.write('x_bests = [];\n')
 				bm.write('obj_bests = [];\n')
 
 				bm.write('global simm\n')
+				bm.write('global sim_time\n')
 				bm.write('for n = 1:trials\n')
 				bm.write('\tsimm = 0;\n')
+				bm.write('\tsim_time = 0;\n')
 				bm.write('\tm = mcts(phi, mdl, budget_t, budget_p, controlpoints, input_name, input_range, T, scalar);\n')
 				bm.write('\tfalsified = [falsified; m.falsified];\n')
-				#bm.write('\tnum_sim = [num_sim;m.root.num_sim];\n')		
 				bm.write('\tnum_sim = [num_sim;simm];\n')
 				bm.write('\ttime = [time;m.time_cost];\n')
-				
+				bm.write('\tsim_cost = [sim_cost; sim_time;\n]')
+
 				#for arch
 				bm.write('\tx_bests = [x_bests; m.root.x_best\'];\n')
 				bm.write('\tobj_bests = [obj_bests; m.root.obj_best];\n')
@@ -163,7 +166,7 @@ for ph in phi_str:
 					bm.write(';filename')
 				bm.write('};\n')
 
-				bm.write('result = table(filename, spec, falsified, time, num_sim, obj_bests, x_bests);\n')
+				bm.write('result = table(filename, spec, falsified, time, num_sim, obj_bests, sim_cost, x_bests);\n')
 				bm.write('writetable(result,\'$csv\',\'Delimiter\',\';\');\n')
 				bm.write('quit force\n')
 				bm.write('EOF\n')

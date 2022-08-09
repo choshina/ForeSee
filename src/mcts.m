@@ -14,7 +14,6 @@ classdef mcts < handle
         cp
         input_name
         input_range
-        sim_time
         
         %results
         falsified
@@ -51,7 +50,7 @@ classdef mcts < handle
             this.falsified = 0;
             this.num_sim = 0;
             this.time_cost = 0;
-            
+            this.sim_cost = 0;
             
             %params
             this.scalar = sc;

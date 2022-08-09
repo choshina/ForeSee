@@ -145,7 +145,7 @@ for ph in phi_str:
 				bm.write('\tfalsified = [falsified; m.falsified];\n')
 				bm.write('\tnum_sim = [num_sim;simm];\n')
 				bm.write('\ttime = [time;m.time_cost];\n')
-				bm.write('\tsim_cost = [sim_cost; sim_time;\n]')
+				bm.write('\tsim_cost = [sim_cost; sim_time];\n')
 
 				#for arch
 				bm.write('\tx_bests = [x_bests; m.root.x_best\'];\n')

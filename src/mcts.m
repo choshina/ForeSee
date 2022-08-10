@@ -54,11 +54,11 @@ classdef mcts < handle
             %params
             this.scalar = sc;
             
-            tic;
+            tmcts = tic;
             
             while true
                 this.exec(this.root);
-                this.time_cost = toc;
+                this.time_cost = toc(tmcts);
                 
                 if this.root.reward >= 1
                     this.falsified = 1;

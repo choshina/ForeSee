@@ -212,9 +212,9 @@ classdef Node < handle
 			global sim_time
             this.br.SetParam(this.br.GetSysVariables(), x);
             
-			tic
+			tnode = tic;
             this.br.Sim(this.br.Sys.tspan);
-			sim1 = toc;
+			sim1 = toc(tnode);
 			sim_time = sim_time + sim1;
             
             rob = this.qb_robustness(this.br, this.seq.suffix());

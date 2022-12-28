@@ -150,7 +150,7 @@ for ph in phi_str:
 					bm.write(';filename')
 				bm.write('};\n')
 
-				bm.write('result = table(filename, spec, falsified, time);\n')
+				bm.write('result = table(filename, spec, falsified, time, obj_best);\n')
 				
 				bm.write('writetable(result,\'$csv\',\'Delimiter\',\';\');\n')
 				bm.write('quit force\n')

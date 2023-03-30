@@ -1,0 +1,21 @@
+Pacemaker model
+---------------
+
+Copyright (c) 2022
+Namya Mehan, Ethan Dhanraj, Abdul El-Rahwan, Simon Emil Opalka, Tony Fan, Akil Hamilton, Akshay Mathews Jacob, Rahul Anthony Sundarrajan, Bryan Widjaja, Mostafa Ayesh, and Claudio Menghi
+
+Model file: Model1_Scenario1_Correct.slx with an example use script Scenario1.m
+
+The requirement for the pacemaker is:
+
+PM = G[0,10](PACE_COUNT <= 15) /\ F[0,10](PACE_COUNT >= 8)
+
+PACE_COUNT is the third output of the model and
+time = 10;                  % The simulation duration.
+
+Note that PACE_COUNT is discrete. If this is problematic e.g. wrt. robust semantics,
+you can try experimenting with COUNT < 16 and COUNT > 7 (this is not checked so far).
+
+The input ranges for the two input signals are LRL_input=[50 90] and Mode=[1 6].
+
+Instances: TBD

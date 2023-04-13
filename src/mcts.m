@@ -23,7 +23,7 @@ classdef mcts < handle
     end
     
     methods
-        function this = mcts(phi, mdl, b_t, b_p, cp, in, ir, st, sc)
+        function this = mcts(phi, mdl, b_t, b_p, cp, in, ir, st, sc, interp)
             this.phi = phi;
             this.seq = Sequence(phi);
             this.root = Node(this.seq);
@@ -34,6 +34,9 @@ classdef mcts < handle
             this.br.Sys.tspan = st;
             input_gen.type = 'UniStep';
             input_gen.cp = cp;
+			if strcmp(interp, 'linear')
+				input_gen.method = 'linear';
+			end
             this.br.SetInputGen(input_gen);
             
             for cpi = 0: cp - 1

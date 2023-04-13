@@ -7,11 +7,11 @@ osys = platform.system()
 if osys == 'Linux':
 	mpaths = glob.glob('/usr/local/MATLAB/*/bin/')
 	mpaths.sort()
-	matlab = mpaths[-1] + '/matlab'
+	matlab = mpaths[-1] + 'matlab'
 elif osys == 'Darwin':
 	mpaths = glob.glob('/Applications/MATLAB*/bin/')
 	mpaths.sort()
-	matlab = mpaths[-1] + '/matlab'
+	matlab = mpaths[-1] + 'matlab'
 
 
 model = ''
@@ -24,6 +24,7 @@ input_range = []
 parameters = []
 timespan = ''
 loadfile = ''
+interp = ''
 
 status = 0
 arg = ''
@@ -81,6 +82,8 @@ with open(sys.argv[1],'r') as conf:
 				budget_p = int(argu[0])
 			elif arg == 'scalar':
 				scalar = float(argu[0])
+			elif arg == 'interp':
+				interp = argu[0]
 			else:
 				continue
 			if linenum == 0:
@@ -92,6 +95,8 @@ for ph in phi_str:
 		for opt in optimization:
 			property = ph.split(';')
 			filename = model+ '_foresee_' + property[0] + '_' + str(cp)
+			if interp != '':
+				filename = filename + '_' + interp
 			param = '\n'.join(parameters)
 			with open('benchmarks/'+filename,'w') as bm:
 				bm.write('#!/bin/sh\n')
@@ -124,6 +129,7 @@ for ph in phi_str:
 				bm.write('spec = \''+ property[1]+'\';\n')
 				bm.write('phi = STL_Formula(\'phi\',spec);\n')
 				bm.write('T = ' + timespan + ';\n')
+				bm.write('interp = \'' + interp + '\';\n')
 		
 				bm.write('trials = ' + trials + ';\n')	
 				bm.write('filename = \''+filename+'\';\n')
@@ -141,7 +147,7 @@ for ph in phi_str:
 				bm.write('for n = 1:trials\n')
 				bm.write('\tsimm = 0;\n')
 				bm.write('\tsim_time = 0;\n')
-				bm.write('\tm = mcts(phi, mdl, budget_t, budget_p, controlpoints, input_name, input_range, T, scalar);\n')
+				bm.write('\tm = mcts(phi, mdl, budget_t, budget_p, controlpoints, input_name, input_range, T, scalar, interp);\n')
 				bm.write('\tfalsified = [falsified; m.falsified];\n')
 				bm.write('\tnum_sim = [num_sim;simm];\n')
 				bm.write('\ttime = [time;m.time_cost];\n')

@@ -1,3 +1,6 @@
+#arg1: config file
+#arg2: csv file
+
 import sys
 import csv
 
@@ -5,6 +8,7 @@ system = ''
 T = 0
 cp = 0
 Tu = 0
+form = ''
 
 sort_str = ''
 sorts = []
@@ -16,6 +20,7 @@ with open(sys.argv[1], 'r') as conf:
 	cp = int(lines[2])
 	sort_str = lines[3].strip()
 	Tu = T/cp
+	form = lines[4].strip()
 
 	for st in sort_str.split(' '):
 		sorts.append(int(st))
@@ -71,10 +76,11 @@ with open(sys.argv[2], 'r') as res:
 				for k in sorts:
 					inputs = inputs + r[7 + i + (k-1)*cp] + ' '
 				inputs = inputs + ';'
-				inputs = inputs + str((i+1)*Tu-0.1) + ' '
-				for k in sorts:
-					inputs = inputs + r[7 + i + (k-1)*cp] + ' '
-				inputs = inputs + ';'
+				if form == 'pwc': #piecewise constant
+					inputs = inputs + str((i+1)*Tu-0.1) + ' '
+					for k in sorts:
+						inputs = inputs + r[7 + i + (k-1)*cp] + ' '
+					inputs = inputs + ';'
 			inputs = inputs + str(T) + ' '
 			for k in sorts:
 				inputs = inputs + r[7 + cp - 1 + (k-1)*cp] + ' '

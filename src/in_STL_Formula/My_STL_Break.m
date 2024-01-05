@@ -55,6 +55,9 @@ switch (phi.type)
         else
             output = [output phi.phi2];
         end
+
+    case {'until'}
+        output = [output phi.phi1 phi.phi2];
               
 end
 

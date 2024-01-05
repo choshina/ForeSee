@@ -361,6 +361,63 @@ switch(phi.type)
         [time_values, valarray] = RobustEv(time_values1, valarray1, I___);
         
 
+    case 'until'
+        I___ = eval(phi.interval);
+        I___ = max([I___; 0 0]);
+        I___(1) = min(I___(1), I___(2));
+        interval1 = [interval(1), I___(2)+interval(2)];
+        interval2 = I___+interval;
+
+        valarray_s = [];
+        time_values_s = [];
+        valarray_b = [];
+        time_values_b = [];
+        if equals_to(seq.head(), phi.phi1)
+            [valarray_s, time_values_s] = sub_GetValues(Sys, phi.phi1, P, traj, seq.suffix(), interval1);
+            [valarray_b, time_values_b] = GetValues(Sys, phi.phi2, P, traj, interval2);
+            sat_idx = find(valarray_b > 0);
+            vio_idx = find(valarray_b < 0);
+            valarray_b(sat_idx) = intmax;
+            valarray_b(vio_idx) = intmin;
+            if(I___(end)~=inf)
+                time_values_s = [time_values_s time_values_s(end)+I___(end)];
+                valarray_s = [valarray_s valarray_s(end)];
+                time_values_b = [time_values_b time_values_b(end)+I___(end)];
+                valarray_b = [valarray_b valarray_b(end)];
+            end
+            [time_values, valarray] = RobustUntil(time_values_s, valarray_s, time_values_b, valarray_b, I___);
+
+        else
+            [valarray_s, time_values_s] = sub_GetValues(Sys, phi.phi2, P, traj, seq.suffix(), interval2);
+            [valarray_b, time_values_b] = GetValues(Sys, phi.phi1, P, traj, interval1);
+            sat_idx = find(valarray_b > 0);
+            vio_idx = find(valarray_b < 0);
+            valarray_b(sat_idx) = intmax;
+            valarray_b(vio_idx) = intmin;
+            if(I___(end)~=inf)
+                time_values_s = [time_values_s time_values_s(end)+I___(end)];
+                valarray_s = [valarray_s valarray_s(end)];
+                time_values_b = [time_values_b time_values_b(end)+I___(end)];
+                valarray_b = [valarray_b valarray_b(end)];
+            end
+            [time_values, valarray] = RobustUntil(time_values_b, valarray_b, time_values_s, valarray_s, I___);
+        end
+
+        
+
+
+        
+%         [valarray1, time_values1] = GetValues(Sys, phi.phi1, P, traj, interval1);
+%         [valarray2, time_values2] = GetValues(Sys, phi.phi2, P, traj, interval2);
+%         if(I___(end)~=inf)
+%             time_values1 = [time_values1 time_values1(end)+I___(end)];
+%             valarray1 = [valarray1 valarray1(end)];
+%             time_values2 = [time_values2 time_values2(end)+I___(end)];
+%             valarray2 = [valarray2 valarray2(end)];
+%         end
+%         [time_values, valarray] = RobustUntil(time_values1, valarray1, time_values2, valarray2, I___);
+
+        
 end
 
 %%  Sanity checks

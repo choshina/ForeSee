@@ -1,0 +1,14 @@
+danger := x1[t] - x2[t] <= 10
+precedence := x1[t] - x2[t] >= 0
+
+sticky_accel := alw_[0, 0.2] a2[t] >= 0.5
+
+car := 2<= v1[t] and v1[t] <= 27 and 2 <= v2[t] and v2[t] <= 27
+
+control_spec := ((not ev(danger)) or (sticky_accel until danger))
+
+scenario_spec := ev_[0,9] (alw_[0,1] (danger))
+
+invariant := car and precedence
+
+phi1 := not( (alw (control_spec and invariant)) and scenario_spec)

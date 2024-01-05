@@ -8,7 +8,7 @@ function eq = equals_to(phi1, phi2)
                 eq = strcmp(get_id(phi1), get_id(phi2));
             case {'not', 'always', 'eventually'}
                 eq = equals_to(phi1.phi, phi2.phi);
-            case {'and', 'or'}
+            case {'and', 'or', 'until'}
                 eq = equals_to(phi1.phi1, phi2.phi1) && equals_to(phi1.phi2, phi2.phi2);
         end
     end

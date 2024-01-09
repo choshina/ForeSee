@@ -59,3 +59,8 @@ for n = 1:trials
     x_bests = [x_bests; m.root.x_best'];
     obj_bests = [obj_bests; m.root.obj_best];
 end
+
+spec = {spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec;spec};
+filename = {filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename;filename};
+result = table(filename, spec, falsified, time, obj_bests);
+writetable(result,'result.csv','Delimiter',';');

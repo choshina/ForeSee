@@ -29,11 +29,11 @@ for i = 1: numel(var)
     Bcar.SetParamRanges(var{i}, ranges(i, :));
 end
 % Bcar.SetParamRanges(var, ranges);
-R = BreachRequirement(phi1);
+%R = BreachRequirement(phi1);
 
 % mdl = 'Autotrans_shift';
 % Br = BreachSimulinkSystem(mdl);
-budget_t = 3000;
+budget_t = 600;
 scalar = 0.2;
 % controlpoints = 5;
 budget_p = 10;
@@ -42,7 +42,7 @@ budget_p = 10;
 % spec = 'alw_[0.0, 20.0](speed[t] < 120.0)';
 % % phi = STL_Formula('phi',spec);
 % T = 0:.01:30;
-trials = 30;
+trials = 10;
 
 falsified = [];
 time = [];
@@ -54,7 +54,7 @@ obj_bests = [];
 global simm
 for n = 1:trials
     simm = 0;
-    m = mcts2(phi1, Bcar, budget_t, budget_p, scalar);
+    m = mcts2(rnc1, Bcar, budget_t, budget_p, scalar);
     falsified = [falsified; m.falsified];
     time = [time;m.time_cost];
     num_sim = [num_sim;simm];
@@ -63,4 +63,4 @@ for n = 1:trials
 end
 
 result = table(falsified, time, num_sim, obj_bests);
-writetable(result,'result.csv','Delimiter',';');
+writetable(result,'f_rnc1.csv','Delimiter',';');

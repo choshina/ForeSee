@@ -11,4 +11,13 @@ scenario_spec := ev_[0,9] (alw_[0,1] (danger))
 
 invariant := car and precedence
 
-phi1 := not( (alw (control_spec and invariant)) and scenario_spec)
+rnc3 := not( (alw (control_spec and invariant)) and scenario_spec)
+
+rnc2pre := alw(precedence) and ev_[0, 9] ((alw_[0,1] danger) and (alw_[0, 1] a2[t] >= 1) and (ev_[1, 5] not(danger)))
+rnc2 := not(rnc2pre)
+
+
+
+sticky_accel_1 := alw_[0, 1] a2[t] >= 1
+control_spec_1 := ((not ev(danger)) or (sticky_accel_1 until danger))
+rnc1 := not( (alw (control_spec_1 and invariant)) and scenario_spec)

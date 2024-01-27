@@ -6,16 +6,17 @@ function [t_out, X, p, status] = sim_car(Sys, t_in, p)
 
 % Getting preliminary values
 base_index = Sys.DimX;
-n_cp = (size(Sys.ParamList, 2) - base_index - 4) / 2;
+n_cp = (size(Sys.ParamList, 2) - base_index) / 2;
 T = t_in(end);
 
+x1_0 = 45;
+v1_0 = 2;
+x2_0 = 5;
+v2_0 = 3.5;
+
 % Getting model parameters
-x1_0 = p(base_index + 1);
-x2_0 = p(base_index + 2);
-v1_0 = p(base_index + 3);
-v2_0 = p(base_index + 4);
-a1_raw = p(base_index + 5:base_index +5 + n_cp -1);
-a2_raw = p(base_index +5 + n_cp:base_index +5 + n_cp + n_cp -1);
+a1_raw = p(base_index + 1:base_index +1 + n_cp -1);
+a2_raw = p(base_index +1 + n_cp:base_index +1 + n_cp + n_cp -1);
 
 % input signals a1, a2 are controlled by parameters a1_raw, a2_raw
 % and interpolated into piecewise-constant signals

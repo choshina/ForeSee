@@ -42,7 +42,7 @@ budget_p = 10;
 % spec = 'alw_[0.0, 20.0](speed[t] < 120.0)';
 % % phi = STL_Formula('phi',spec);
 % T = 0:.01:30;
-trials = 10;
+trials = 2;
 
 falsified = [];
 time = [];
